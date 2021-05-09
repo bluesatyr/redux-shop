@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+// import { useReducer } from "react";
 import {
   UPDATE_PRODUCTS,
   ADD_TO_CART,
@@ -11,9 +11,17 @@ import {
   TOGGLE_CART
 } from "./actions";
 
-export const reducer = (state, action) => { // export default function reducer(state =  initialState, action)
+const initialState = {
+  products: [],
+  cart: [],
+  cartOpen: false,
+  categories: [],
+  currentCategory: '',
+}
+
+const reducer = (state=initialState, action) => { // export default function reducer(state =  initialState, action)
   switch (action.type) {
-    case UPDATE_PRODUCTS:
+    case UPDATE_PRODUCTS: 
       return {
         ...state,
         products: [...action.products],  // action.payload
@@ -85,12 +93,4 @@ export const reducer = (state, action) => { // export default function reducer(s
   }
 };
 
-export function useProductReducer(initialState) {
-  return useReducer(reducer, initialState)
-}
-
-// Create a new Redux store with the `createStore` function,
-// and use the `counterReducer` for the update logic
-// const store = Redux.createStore(counterReducer)
-
-// 'categories/updateCurrent', categories/updateAll, cart/toggle, cart/clear' 
+export default reducer;
